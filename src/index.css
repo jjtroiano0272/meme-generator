@@ -42,6 +42,12 @@
   color: var(--secondary-color);
 }
 
+.pointer:hover {
+  text-decoration: none !important;
+  cursor: pointer;
+  color: var(--primary-color);
+}
+
 .App {
   background-color: var(--bg-color);
   color: var(--font-color);
