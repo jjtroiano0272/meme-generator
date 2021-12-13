@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Main from './components/Main';
+import Footer from './components/Footer';
+// import './App.css';
+// import { Navbar } from 'react-bootstrap';
 
-function App() {
+export default function App() {
+  const [darkMode, setDarkMode] = useState(() =>
+    JSON.parse(localStorage.getItem('DARK_MODE'))
+  );
+
+  const toggleDarkMode = () => {
+    localStorage.setItem('DARK_MODE', !darkMode);
+    setDarkMode(!darkMode);
+  };
+
+  useEffect(() => {
+    localStorage.setItem('DARK_MODE', darkMode);
+  }, [darkMode]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App' data-theme={darkMode ? 'dark' : 'light'}>
+      <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+      <Main />
+      <Footer />
+      {/* <Switch>
+        <Route path='/panda' component={Panda} />
+        <Route path='/gorilla' component={Gorilla} />
+        <Route path='/rhino' component={Rhino} />
+        <Route path='/seaTurtle' component={SeaTurtle} />
+        <Route path='/' component={Home} />
+      </Switch> */}
     </div>
   );
 }
-
-export default App;
