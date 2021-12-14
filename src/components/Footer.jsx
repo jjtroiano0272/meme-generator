@@ -7,15 +7,17 @@ export default function Footer(props) {
     <div className='container'>
       <footer className='pt-4 pt-md-5 border-top'>
         <div className='row'>
-          <div className='col-6'>
-            <a className='navbar-brand' href='#'>
-              <img className='mb-3 o-3' src={logo} alt='Website logo' />
-              <small className='d-block mb-2 text-secondary'>
-                © 2021 J. Troiano
-              </small>
-            </a>
+          <a className='navbar-brand' href='#'>
+            <img className='mb-3 o-3' src={logo} alt='Website logo' />
+          </a>
+        </div>
+
+        <div className='d-flex'>
+          <div>
+            <small className='text-secondary mb-2'>© 2021 J. Troiano</small>
           </div>
-          <div className='col-6 text-end'>
+
+          <div className='ms-auto'>
             <a
               href='https://portfolio-page-vite-6r4.pages.dev/'
               className='pointer'
@@ -24,12 +26,10 @@ export default function Footer(props) {
             </a>
           </div>
         </div>
-        <div className='row'>
-          <div className='row text-center'>
-            <a href='#' className='mb-4 pointer'>
-              <CaretDoubleUp style={{ size: '2rem' }} />
-            </a>
-          </div>
+        <div className='row text-center'>
+          <a href='#' className='mb-4 pointer'>
+            <CaretDoubleUp style={{ size: '2rem' }} />
+          </a>
         </div>
       </footer>
     </div>

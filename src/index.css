@@ -15,6 +15,8 @@
   --heading-color: #292922;
   --shadow: rgba(0, 0, 0, 0.12);
   --navbar-text: rgba(0, 0, 0, 0.9);
+  --border-color: rgba(133, 133, 133, 0.55);
+  --navbar-toggler: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
 [data-theme='dark'] {
@@ -29,7 +31,8 @@
   --help--color: #673ab7;
   --shadow: rgba(255, 255, 255, 0.12);
   --navbar-text: rgba(255, 255, 255, 0.55);
-  --border-color: #858585;
+  --border-color: rgba(255, 255, 255, 0.55);
+  --navbar-toggler: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
 .text-secondary {
@@ -155,8 +158,8 @@ input.search-query:focus {
 }
 
 .react-darkMode-switch {
-  margin-bottom: 1.2rem;
-  /* margin: 0.9rem; */
+  margin: 0.9rem;
+  /* margin-bottom: 1.2rem; */
   /* size: 120; */
 }
 
@@ -168,6 +171,15 @@ input.search-query:focus {
 .nav-bg {
   background-color: var(--bg-color);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='30' opacity='0.5' viewBox='0 0 1000 120'%3E%3Cg fill='none' stroke='%23222' stroke-width='1' %3E%3Cpath d='M-500 75c0 0 125-30 250-30S0 75 0 75s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 45c0 0 125-30 250-30S0 45 0 45s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 105c0 0 125-30 250-30S0 105 0 105s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 15c0 0 125-30 250-30S0 15 0 15s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500-15c0 0 125-30 250-30S0-15 0-15s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 135c0 0 125-30 250-30S0 135 0 135s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.navbar-toggler {
+  /* border-color: rgba(0, 0, 0, 0.1); */
+  border-color: var(--border-color);
+}
+.navbar-toggler-icon {
+  /* background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); */
+  background-image: var(--navbar-toggler);
 }
 
 .caption {

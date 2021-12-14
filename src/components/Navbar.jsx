@@ -38,11 +38,11 @@ export default function Navbar({ user, darkMode, toggleDarkMode }) {
         </button>
         <div className='collapse navbar-collapse' id='navbarSupportedContent'>
           <ul className='navbar-nav mr-auto'>
-            <li className='nav-item active'>
+            {/* <li className='nav-item active'>
               <a className='nav-link' href='#'>
                 Home <span className='sr-only'>(current)</span>
               </a>
-            </li>
+            </li> */}
             <li className='nav-item'>
               <a className='nav-link' href='#'>
                 Link
@@ -54,7 +54,7 @@ export default function Navbar({ user, darkMode, toggleDarkMode }) {
                 href='#'
                 id='navbarDropdown'
                 role='button'
-                data-toggle='dropdown'
+                data-bs-toggle='dropdown'
                 aria-haspopup='true'
                 aria-expanded='false'
               >
@@ -80,22 +80,27 @@ export default function Navbar({ user, darkMode, toggleDarkMode }) {
             </li>
           </ul>
 
-          <form className='form-inline my-2 my-lg-0'>
-            {/* <span className='d-inline-block float-left'> */}
-            <DarkModeSwitch
-              className='react-darkMode-switch'
-              checked={darkMode}
-              onClick={toggleDarkMode}
-              // size={120}
-            />
-            {/* </span> */}
-            <input
-              className='form-control mr-sm-2'
-              type='search'
-              ref={inputRef}
-              placeholder='Search'
-              aria-label='Search'
-            />
+          <form className='form-inline my-2 my-lg-0 ms-auto'>
+            <span className='d-inline-block float-left'>
+              {/* <span className='d-inline-block float-left'> */}
+              <DarkModeSwitch
+                className='react-darkMode-switch'
+                checked={darkMode}
+                onClick={toggleDarkMode}
+                size={'1.8rem'}
+              />
+              {/* </span> */}
+            </span>
+            <span className='d-inline-block'>
+              <input
+                className='form-control search-query mr-sm-2'
+                type='search'
+                ref={inputRef}
+                placeholder='Search'
+                aria-label='Search'
+              />
+            </span>
+
             {/* <button
               className='btn btn-outline-success my-2 my-sm-0'
               type='submit'
