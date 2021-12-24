@@ -1,37 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CaretDoubleUp } from 'phosphor-react';
 import logo from '../image/logoipsum-logo-39.svg';
 
 export default function Footer(props) {
+  useEffect(() => {}, []);
   return (
-    <div className='container'>
-      <footer className='pt-4 pt-md-5 border-top'>
-        <div className='row'>
-          <a className='navbar-brand' href='#'>
-            <img className='mb-3 o-3' src={logo} alt='Website logo' />
-          </a>
-        </div>
-
-        <div className='d-flex'>
-          <div>
+    <footer className='footer mt-5'>
+      <div className='container'>
+        <div>
+          <p>
             <small className='text-secondary mb-2'>© 2021 J. Troiano</small>
-          </div>
-
-          <div className='ms-auto'>
+          </p>
+        </div>
+        <div className='ms-auto'>
+          <p>
             <a
               href='https://portfolio-page-vite-6r4.pages.dev/'
-              className='pointer'
+              className='pointer text-secondary'
             >
               View Profile
             </a>
-          </div>
+          </p>
         </div>
+
         <div className='row text-center'>
           <a href='#' className='mb-4 pointer'>
             <CaretDoubleUp style={{ size: '2rem' }} />
           </a>
         </div>
-      </footer>
-    </div>
+      </div>
+    </footer>
   );
 }

@@ -1,30 +1,40 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useContext, useRef } from 'react';
+import { Link, NavLink, Route, Routes } from 'react-router-dom';
 import { useHotkeys } from 'react-hotkeys-hook';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
+import { ThemeContext } from './ThemeProvider';
+import Tooltip from '@mui/material/Tooltip';
+import $ from 'jquery';
 import logo from '../image/logoipsum-logo-39.svg';
-// import { Navbar, Nav, Container } from 'react-bootstrap';
 
-export default function Navbar({ user, darkMode, toggleDarkMode }) {
+export default function Navbar({ user }) {
+  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
   const inputRef = useRef(null);
 
   // Switch theme
-  useHotkeys('CTRL+\\, CMD+\\', () => {
-    console.log('Switch theme');
-    toggleDarkMode();
-  });
+  useHotkeys(
+    'cmd+/, ctrl+/',
+    () => {
+      toggleDarkMode();
+    },
+    [toggleDarkMode]
+  );
 
-  // Focus on search box
-  useHotkeys('CTRL+/, CMD+/', () => {
-    inputRef.current.focus();
-    console.log('search box focused');
-  });
+  // Focus search box
+  useHotkeys(
+    'cmd+k, ctrl+k',
+    () => {
+      inputRef.current.focus();
+    },
+    [inputRef]
+  );
 
   return (
-    <nav className='navbar navbar-expand-lg nav-bg sb-1'>
+    <nav className='navbar navbar-expand-lg navbar-light mb-4 sbl-1'>
       <div className='container'>
-        <a className='navbar-brand' href='#'>
-          <img src={logo} alt='Website logo' />
-        </a>
+        <NavLink to='/' className='navbar-brand'>
+          <img src={logo} alt='Brand logo' id='nav-logo' />
+        </NavLink>
         <button
           className='navbar-toggler'
           type='button'
@@ -38,76 +48,53 @@ export default function Navbar({ user, darkMode, toggleDarkMode }) {
         </button>
         <div className='collapse navbar-collapse' id='navbarSupportedContent'>
           <ul className='navbar-nav mr-auto'>
-            {/* <li className='nav-item active'>
-              <a className='nav-link' href='#'>
-                Home <span className='sr-only'>(current)</span>
-              </a>
-            </li> */}
             <li className='nav-item'>
-              <a className='nav-link' href='#'>
-                Link
-              </a>
+              <Link to='/ml-memes' className='nav-link'>
+                {/* TODO: This will be kinda randomly generated text, to be whimsical */}
+                No, show me some AI-generated memes!
+              </Link>
             </li>
-            <li className='nav-item dropdown'>
-              <a
-                className='nav-link dropdown-toggle'
-                href='#'
-                id='navbarDropdown'
-                role='button'
-                data-bs-toggle='dropdown'
-                aria-haspopup='true'
-                aria-expanded='false'
-              >
-                Dropdown
-              </a>
-              <div className='dropdown-menu' aria-labelledby='navbarDropdown'>
-                <a className='dropdown-item' href='#'>
-                  Action
-                </a>
-                <a className='dropdown-item' href='#'>
-                  Another action
-                </a>
-                <div className='dropdown-divider'></div>
-                <a className='dropdown-item' href='#'>
-                  Something else here
-                </a>
-              </div>
+            <li className='nav-item'>
+              <Link to='/my-profile' className='nav-link'>
+                My Profile
+              </Link>
             </li>
+
             <li className='nav-item'>
               <a className='nav-link disabled' href='#'>
+                {/* Conditional logic here or private-users only stuff */}
                 Disabled
               </a>
             </li>
           </ul>
 
-          <form className='form-inline my-2 my-lg-0 ms-auto'>
-            <span className='d-inline-block float-left'>
-              {/* <span className='d-inline-block float-left'> */}
-              <DarkModeSwitch
-                className='react-darkMode-switch'
-                checked={darkMode}
-                onClick={toggleDarkMode}
-                size={'1.8rem'}
-              />
-              {/* </span> */}
-            </span>
-            <span className='d-inline-block'>
-              <input
-                className='form-control search-query mr-sm-2'
-                type='search'
-                ref={inputRef}
-                placeholder='Search'
-                aria-label='Search'
-              />
-            </span>
-
-            {/* <button
-              className='btn btn-outline-success my-2 my-sm-0'
-              type='submit'
-            >
-              Search
-            </button> */}
+          <form className='form-inline my-2 my-lg-0 ms-md-auto'>
+            <input
+              className='form-control mr-sm-2'
+              type='search'
+              ref={inputRef}
+              placeholder='Search'
+              aria-label='Search'
+            />
           </form>
+
+          <Tooltip
+            title={
+              !darkMode
+                ? 'Switch theme to dark mode'
+                : 'Switch theme to light mode'
+            }
+          >
+            <button
+              onClick={toggleDarkMode}
+              className='btn btn-lg my-2 my-sm-0'
+              data-tip
+              data-for='lightDarkModeTip'
+              type='checkbox'
+            >
+              {darkMode === true ? '🔆' : '🌙'}
+            </button>
+          </Tooltip>
         </div>
       </div>
     </nav>

@@ -1,37 +1,39 @@
-import React, { useEffect, useState } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import ReactDOM from 'react-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Link,
+  useRouteMatch,
+  useParams,
+} from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Main from './components/Main';
+// import Home from './components/Home';
+import Home from './components/Home';
 import Footer from './components/Footer';
-// import './App.css';
-// import { Navbar } from 'react-bootstrap';
+import MachineLearnedMemes from './components/MachineLearnedMemes';
+import UserProfile from './components/UserProfile';
+// import UserProfile from './components/UserProfile';
+import { ThemeContext } from './components/ThemeProvider';
+import axios from 'axios';
+import ReactTooltip from 'react-tooltip';
 
 export default function App() {
-  const [darkMode, setDarkMode] = useState(() =>
-    JSON.parse(localStorage.getItem('DARK_MODE'))
-  );
-
-  const toggleDarkMode = () => {
-    localStorage.setItem('DARK_MODE', !darkMode);
-    setDarkMode(!darkMode);
-  };
-
-  useEffect(() => {
-    localStorage.setItem('DARK_MODE', darkMode);
-  }, [darkMode]);
+  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
 
   return (
-    <div className='App' data-theme={darkMode ? 'dark' : 'light'}>
-      <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-      <Main />
-      <Footer />
-      {/* <Switch>
-        <Route path='/panda' component={Panda} />
-        <Route path='/gorilla' component={Gorilla} />
-        <Route path='/rhino' component={Rhino} />
-        <Route path='/seaTurtle' component={SeaTurtle} />
-        <Route path='/' component={Home} />
-      </Switch> */}
-    </div>
+    <Router>
+      <Navbar />
+
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route
+          path='/ml-memes'
+          element={<MachineLearnedMemes src='inspirobot' numPosts={50} />}
+        />
+        <Route path='/my-profile' element={<UserProfile />} />
+      </Routes>
+    </Router>
   );
 }
